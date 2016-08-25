@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Key"
+        android:id="@+id/tvUpdate"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etUpdate1"
+        android:layout_gravity="center_horizontal"
+        android:hint="請輸入海賊名稱"
+        android:textSize="22dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etUpdate2"
+        android:layout_gravity="center_horizontal"
+        android:hint="請輸入公仔價格"
+        android:textSize="22dp"/>
+
+</LinearLayout>

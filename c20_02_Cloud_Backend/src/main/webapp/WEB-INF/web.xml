@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+
+    <servlet>
+        <servlet-name>ServletWelcome</servlet-name>
+        <servlet-class>com.example.student.myapplication.backend.ServletWelcome</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletWelcome</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletAdd</servlet-name>
+        <servlet-class>com.example.student.myapplication.backend.ServletAdd</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAdd</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletDelete</servlet-name>
+        <servlet-class>com.example.student.myapplication.backend.ServletDelete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDelete</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUpdate</servlet-name>
+        <servlet-class>com.example.student.myapplication.backend.ServletUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUpdate</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletQuery</servlet-name>
+        <servlet-class>com.example.student.myapplication.backend.ServletQuery</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletQuery</servlet-name>
+        <url-pattern>/query</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletGet</servlet-name>
+        <servlet-class>com.example.student.myapplication.backend.ServletGet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletGet</servlet-name>
+        <url-pattern>/get</url-pattern>
+    </servlet-mapping>
+
+</web-app>

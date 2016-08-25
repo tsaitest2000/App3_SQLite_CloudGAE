@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/App3_SQLite_CloudGAE.iml" filepath="$PROJECT_DIR$/App3_SQLite_CloudGAE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c17_01_SQLite/c17_01_SQLite.iml" filepath="$PROJECT_DIR$/c17_01_SQLite/c17_01_SQLite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c18_01_SQLite/c18_01_SQLite.iml" filepath="$PROJECT_DIR$/c18_01_SQLite/c18_01_SQLite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c18_H_Pirate/c18_H_Pirate.iml" filepath="$PROJECT_DIR$/c18_H_Pirate/c18_H_Pirate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c19_01_Cloud/c19_01_Cloud.iml" filepath="$PROJECT_DIR$/c19_01_Cloud/c19_01_Cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c19_02_Cloud_Backend/c19_02_Cloud_Backend.iml" filepath="$PROJECT_DIR$/c19_02_Cloud_Backend/c19_02_Cloud_Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c20_01_Cloud/c20_01_Cloud.iml" filepath="$PROJECT_DIR$/c20_01_Cloud/c20_01_Cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c20_02_Cloud_Backend/c20_02_Cloud_Backend.iml" filepath="$PROJECT_DIR$/c20_02_Cloud_Backend/c20_02_Cloud_Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c20_H_Cloud/c20_H_Cloud.iml" filepath="$PROJECT_DIR$/c20_H_Cloud/c20_H_Cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c20_H_Cloud_Backend/c20_H_Cloud_Backend.iml" filepath="$PROJECT_DIR$/c20_H_Cloud_Backend/c20_H_Cloud_Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myapplication/myapplication.iml" filepath="$PROJECT_DIR$/myapplication/myapplication.iml" />
+    </modules>
+  </component>
+</project>

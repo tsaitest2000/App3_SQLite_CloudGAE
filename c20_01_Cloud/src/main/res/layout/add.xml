@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_margin="5dp"
+        android:hint="請輸入書名"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title" />
+
+    <EditText
+        android:layout_margin="5dp"
+        android:hint="請輸入作者"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/author" />
+
+    <EditText
+        android:layout_margin="5dp"
+        android:hint="請輸入價格"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/price" />
+
+</LinearLayout>
