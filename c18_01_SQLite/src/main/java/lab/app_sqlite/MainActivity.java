@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
    private SimpleCursorAdapter mAdapter;
 
    private ListView mListView;
-   private ImageView mIvEdit; //edit.xml中的元件
-   private EditText mEtNameEdit; //edit.xml中的元件
-   private EditText mEtPriceEdit; //edit.xml中的元件
+   private ImageView mIv_Edit; //edit.xml中的元件
+   private EditText mEtName_Edit; //edit.xml中的元件
+   private EditText mEtPrice_Edit; //edit.xml中的元件
    private Bitmap mBmp;
 
    @Override
@@ -74,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
             Cursor cursor = (Cursor) getItem(position); /* ★★★★★ */
             String name = cursor.getString(1);
             int price = cursor.getInt(2);
-            int imageId = cursor.getInt(3);
+            int imageResId = cursor.getInt(3);
             byte[] bytes = cursor.getBlob(4);
 
             tvName.setText(name);
             tvPrice.setText(String.valueOf(price));
-            if (bytes == null) iv1.setImageResource(imageId); //沒有拍照取得新影像
+            if (bytes == null) iv1.setImageResource(imageResId); //沒有拍照取得新影像
             else iv1.setImageBitmap(bytes_To_Bmp(bytes)); // bytes轉換為bitmap
             return layoutRow;
          }
@@ -151,15 +151,15 @@ public class MainActivity extends AppCompatActivity {
          AlertDialog.Builder alertBuilder = new AlertDialog.Builder(mContext);
 
          View layoutEdit = View.inflate(mContext, R.layout.edit, null); //亦可使用LayoutInflater
-         mIvEdit = (ImageView) layoutEdit.findViewById(R.id.edit_image);
-         mEtNameEdit = (EditText) layoutEdit.findViewById(R.id.edit_name);
-         mEtPriceEdit = (EditText) layoutEdit.findViewById(R.id.edit_price);
-         mIvEdit.setImageBitmap(bytes_To_Bmp(bytes)); //老師使用.setImageResource(imageResId)
-         mEtNameEdit.setText(name);
-         mEtPriceEdit.setText(String.valueOf(price));
+         mIv_Edit = (ImageView) layoutEdit.findViewById(R.id.edit_image);
+         mEtName_Edit = (EditText) layoutEdit.findViewById(R.id.edit_name);
+         mEtPrice_Edit = (EditText) layoutEdit.findViewById(R.id.edit_price);
+         mIv_Edit.setImageBitmap(bytes_To_Bmp(bytes)); //老師使用.setImageResource(imageResId)
+         mEtName_Edit.setText(name);
+         mEtPrice_Edit.setText(String.valueOf(price));
 
-         mIvEdit.setClickable(true);
-         mIvEdit.setOnClickListener(new View.OnClickListener() {
+         mIv_Edit.setClickable(true);
+         mIv_Edit.setOnClickListener(new View.OnClickListener() {
             @Override //啟動照相功能
             public void onClick(View v) {
                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -178,12 +178,12 @@ public class MainActivity extends AppCompatActivity {
                if (mBmp != null) {
                   sql = "Update mcd set name=?, price=?, image=? Where _id = ?";
                   args = new Object[]{
-                     mEtNameEdit.getText().toString(), mEtPriceEdit.getText().toString(), bmp_To_Bytes(mBmp), _id};
+                     mEtName_Edit.getText().toString(), mEtPrice_Edit.getText().toString(), bmp_To_Bytes(mBmp), _id};
                   mBmp = null; /**避免商業邏輯錯誤：若按click item而未再按ImageView照相時**/
                } else {
                   sql = "Update mcd set name=?, price=? Where _id = ?";
                   args = new Object[]{
-                     mEtNameEdit.getText().toString(), mEtPriceEdit.getText().toString(), _id};
+                     mEtName_Edit.getText().toString(), mEtPrice_Edit.getText().toString(), _id};
                }
                mDb.execSQL(sql, args);
                refresh();
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
       if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
          mBmp = (Bitmap) data.getExtras().get("data");
-         mIvEdit.setImageBitmap(mBmp);
+         mIv_Edit.setImageBitmap(mBmp);
       }
    }
 

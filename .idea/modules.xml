@@ -12,7 +12,6 @@
       <module fileurl="file://$PROJECT_DIR$/c20_02_Cloud_Backend/c20_02_Cloud_Backend.iml" filepath="$PROJECT_DIR$/c20_02_Cloud_Backend/c20_02_Cloud_Backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/c20_H_Cloud/c20_H_Cloud.iml" filepath="$PROJECT_DIR$/c20_H_Cloud/c20_H_Cloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/c20_H_Cloud_Backend/c20_H_Cloud_Backend.iml" filepath="$PROJECT_DIR$/c20_H_Cloud_Backend/c20_H_Cloud_Backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myapplication/myapplication.iml" filepath="$PROJECT_DIR$/myapplication/myapplication.iml" />
     </modules>
   </component>
 </project>

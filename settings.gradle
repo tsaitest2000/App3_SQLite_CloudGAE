@@ -1,5 +1,5 @@
 include ':c17_01_SQLite'
-include ':c18_01_SQLite', ':c18_H_Pirate', ':myapplication'
+include ':c18_01_SQLite', ':c18_H_Pirate'
 include ':c19_01_Cloud', ':c19_02_Cloud_Backend'
 include ':c20_01_Cloud', ':c20_02_Cloud_Backend'
 include ':c20_H_Cloud', ':c20_H_Cloud_Backend'

@@ -7,14 +7,14 @@
               android:padding="10dp">
 
     <ImageView
-        android:id="@+id/ivRow"
+        android:id="@+id/iv_row_photo"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
-        android:id="@+id/tvNameRow"
+        android:id="@+id/tv_Row_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
@@ -24,7 +24,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
-        android:id="@+id/tvPriceRow"
+        android:id="@+id/tv_row_price"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"

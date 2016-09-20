@@ -7,7 +7,6 @@
 package com.example.kevin.myapplication.backend;
 
 import java.io.IOException;
-import javax.servlet.http.*;
 
 public class MyServlet extends HttpServlet {
     @Override

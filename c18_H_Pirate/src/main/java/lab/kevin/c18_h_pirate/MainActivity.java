@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
    private SQLiteDatabase mDb;
    private Cursor mCursor;
    private SimpleCursorAdapter mAdapter;
-   private ImageView ivEdit;
-   private EditText etNameEdit;
-   private EditText etPriceEdit;
+   private ImageView ivEdit_photo;
+   private EditText etEdit_name;
+   private EditText etEdit_price;
    private Bitmap mBitmap;
 
    @Override
@@ -56,29 +56,29 @@ public class MainActivity extends AppCompatActivity {
          "create table if not exists king(_id integer primary key, name varchar2(20), price integer, imgResId integer, image blob)");
       mCursor = mDb.rawQuery("select _id, name, price, imgResId, image from king", null);
       mAdapter = new SimpleCursorAdapter(mContext, R.layout.row, mCursor,
-         new String[]{"imgResId", "name", "price"}, new int[]{R.id.ivRow, R.id.tvNameRow, R.id.tvPriceRow},
+         new String[]{"imgResId", "name", "price"}, new int[]{R.id.iv_row_photo, R.id.tv_Row_name, R.id.tv_row_price},
          CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER //★★★★
       ) {
          @Override
          public View getView(int position, View convertView, ViewGroup parent) {
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.row, null);
-            ImageView ivRow = (ImageView) inflate.findViewById(R.id.ivRow);
-            TextView tvNameRow = (TextView) inflate.findViewById(R.id.tvNameRow);
-            TextView tvPriceRow = (TextView) inflate.findViewById(R.id.tvPriceRow);
+            ImageView ivRow_photo = (ImageView) inflate.findViewById(R.id.iv_row_photo);
+            TextView tvRow_name = (TextView) inflate.findViewById(R.id.tv_Row_name);
+            TextView tvRow_price = (TextView) inflate.findViewById(R.id.tv_row_price);
 
             Cursor cursor = (Cursor) getItem(position); //★★★★
             String name = cursor.getString(1);
             int price = cursor.getInt(2);
             byte[] byteArray = cursor.getBlob(4);
-            ivRow.setImageBitmap(bytes_2_bitmap(byteArray));
-            tvNameRow.setText(name);
-            tvPriceRow.setText(String.valueOf(price));
+            tvRow_name.setText(name);
+            tvRow_price.setText(String.valueOf(price));
+            ivRow_photo.setImageBitmap(byteArray_to_bitmap(byteArray));
             return inflate;
          }
       };
       mListView.setAdapter(mAdapter);
-      mListView.setOnItemClickListener(new lvOnItemClkLnr());
-      mListView.setOnItemLongClickListener(new lvOnItemLongClkLnr());
+      mListView.setOnItemClickListener(new MyLvOnItemClkLnr());
+      mListView.setOnItemLongClickListener(new MyLvOnItemLongClkLnr());
    }
 
    @Override
@@ -98,22 +98,22 @@ public class MainActivity extends AppCompatActivity {
       Object[] args = null;
       switch (item.getItemId()) {
          case 1:
-            args = new Object[]{"席爾巴斯.雷利", 6250, imgRes_to_bytes(R.drawable.a01)};
+            args = new Object[]{"席爾巴斯.雷利", 6250, imgResId_to_byteArray(R.drawable.a01)};
             break;
          case 2:
-            args = new Object[]{"蒙奇.D.路飛", 5750, imgRes_to_bytes(R.drawable.a02)};
+            args = new Object[]{"蒙奇.D.路飛", 5750, imgResId_to_byteArray(R.drawable.a02)};
             break;
          case 3:
-            args = new Object[]{"女帝.波雅.漢庫克", 8000, imgRes_to_bytes(R.drawable.a03)};
+            args = new Object[]{"女帝.波雅.漢庫克", 8000, imgResId_to_byteArray(R.drawable.a03)};
             break;
          case 4:
-            args = new Object[]{"波特卡斯.D.艾斯", 6000, imgRes_to_bytes(R.drawable.a04)};
+            args = new Object[]{"波特卡斯.D.艾斯", 6000, imgResId_to_byteArray(R.drawable.a04)};
             break;
          case 5:
-            args = new Object[]{"航海士.娜美", 7600, imgRes_to_bytes(R.drawable.a06)};
+            args = new Object[]{"航海士.娜美", 7600, imgResId_to_byteArray(R.drawable.a06)};
             break;
          case 6:
-            args = new Object[]{"歷史家.妮可羅賓", 7400, imgRes_to_bytes(R.drawable.a07)};
+            args = new Object[]{"歷史家.妮可羅賓", 7400, imgResId_to_byteArray(R.drawable.a07)};
             break;
       }
       mDb.execSQL(sql, args);
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
       mAdapter.notifyDataSetChanged();
    }
 
-   private byte[] imgRes_to_bytes(int imgResId) {
+   private byte[] imgResId_to_byteArray(int imgResId) {
       Resources resources = MainActivity.this.getResources();
       Bitmap bitmap = BitmapFactory.decodeResource(resources, imgResId);
       ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -136,18 +136,19 @@ public class MainActivity extends AppCompatActivity {
       return stream.toByteArray();
    }
 
-   private byte[] bitmap_2_bytes(Bitmap bitmap) {
+   private byte[] bitmap_to_byteArray(Bitmap bitmap) {
       ByteArrayOutputStream stream = new ByteArrayOutputStream();
       bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream);
       return stream.toByteArray();
    }
 
-   private Bitmap bytes_2_bitmap(byte[] byteArray) {
+   private Bitmap byteArray_to_bitmap(byte[] byteArray) {
       Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
       return bmp;
    }
 
-   private class lvOnItemClkLnr implements AdapterView.OnItemClickListener {
+   // 功能：按下ListView的某個item → 進行update的操作
+   private class MyLvOnItemClkLnr implements AdapterView.OnItemClickListener {
 
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -159,15 +160,15 @@ public class MainActivity extends AppCompatActivity {
          final byte[] byteArray = cursor.getBlob(4);
 
          View inflate = LayoutInflater.from(mContext).inflate(R.layout.edit, null);
-         ivEdit = (ImageView) inflate.findViewById(R.id.ivEdit);
-         etNameEdit = (EditText) inflate.findViewById(R.id.etNameEdit);
-         etPriceEdit = (EditText) inflate.findViewById(R.id.etPriceEdit);
+         ivEdit_photo = (ImageView) inflate.findViewById(R.id.iv_edit_photo);
+         etEdit_name = (EditText) inflate.findViewById(R.id.et_edit_name);
+         etEdit_price = (EditText) inflate.findViewById(R.id.et_edit_price);
 
-         ivEdit.setImageBitmap(bytes_2_bitmap(byteArray));
-         etNameEdit.setText(name);
-         etPriceEdit.setText(String.valueOf(price));
+         etEdit_name.setText(name);
+         etEdit_price.setText(String.valueOf(price));
+         ivEdit_photo.setImageBitmap(byteArray_to_bitmap(byteArray));
 
-         ivEdit.setOnClickListener(new View.OnClickListener() {
+         ivEdit_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -185,14 +186,14 @@ public class MainActivity extends AppCompatActivity {
                   if (mBitmap != null) {
                      String sql = "update king set name = ?, price = ?, image = ? where _id = ?";
                      Object[] args = new Object[]{
-                        etNameEdit.getText().toString(), etPriceEdit.getText().toString(), bitmap_2_bytes(mBitmap), _id};
+                        etEdit_name.getText().toString(), etEdit_price.getText().toString(), bitmap_to_byteArray(mBitmap), _id};
                      mDb.execSQL(sql, args);
                      reloadDatabase();
                      mBitmap = null; /**避免商業邏輯錯誤：若按click item而未再按ImageView照相時**/
                   } else {
                      String sql = "update king set name = ?, price = ? where _id = ?";
                      Object[] args = new Object[]{
-                        etNameEdit.getText().toString(), etPriceEdit.getText().toString(), _id};
+                        etEdit_name.getText().toString(), etEdit_price.getText().toString(), _id};
                      mDb.execSQL(sql, args);
                      reloadDatabase();
                   }
@@ -208,17 +209,21 @@ public class MainActivity extends AppCompatActivity {
       if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
          Bundle bundle = data.getExtras();
          mBitmap = (Bitmap) bundle.get("data");
-         ivEdit.setImageBitmap(mBitmap);
+         ivEdit_photo.setImageBitmap(mBitmap);
       }
       super.onActivityResult(requestCode, resultCode, data);
    }
 
-   private class lvOnItemLongClkLnr implements AdapterView.OnItemLongClickListener {
+   // 功能："長"按下ListView的某個item → 進行delete的操作
+   private class MyLvOnItemLongClkLnr implements AdapterView.OnItemLongClickListener {
 
       @Override
       public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
          Cursor cursor = (Cursor) parent.getItemAtPosition(position);
-         mDb.execSQL("delete from king where _id = ?", new Object[]{cursor.getInt(0)});
+         String sql = "delete from king where _id = ?";
+         int _id = cursor.getInt(0);
+         Object[] args = new Object[]{_id};
+         mDb.execSQL(sql, args);
          reloadDatabase();
          return true;
       }
